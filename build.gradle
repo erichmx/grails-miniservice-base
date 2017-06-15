@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+    }
+}
+
+version "0.1"
+group "Tecsou"
+
+apply plugin:"idea"
+apply plugin:"war"
+apply plugin:"org.grails.grails-web"
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-logging"
+    // You may need this one
+    //compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.grails:grails-core"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.grails:grails-web-boot"
+    profile "org.grails.profiles:base"
+
+    //Not sure if this one is required
+    compile "org.grails:grails-plugin-services:$grailsVersion"
+    compile "org.grails:grails-plugin-url-mappings:$grailsVersion"
+
+    //You may want these
+    // console "org.grails:grails-console"
+    //compile "org.grails:grails-bootstrap"
+    //compile group: 'org.grails', name: 'grails-plugin-async', version: "$grailsVersion"
+
+
+    testCompile "org.grails.plugins:geb"
+}
+
+bootRun {
+    jvmArgs('-Dspring.output.ansi.enabled=always')
+    addResources = true
+}
